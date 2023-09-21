@@ -87,7 +87,7 @@ function runOperation(a,b){
             result = a / b
             break;
     }
-    return result
+    return parseFloat(result.toFixed(9))
 }
 
 function clearDisplay(){
