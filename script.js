@@ -11,7 +11,10 @@ const buttonEqual = document.querySelector(".buttonEqual")
 const buttonDot = document.querySelector(".buttonDot")
 const buttonBackspace = document.querySelector(".buttonBackspace")
 
-document.addEventListener("keydown", (event)=>{handlerKeydown(event)})
+document.addEventListener("keydown", (event)=>{
+    event.preventDefault()
+    handlerKeydown(event)
+})
 
 for (let i = 0; i < buttonNumber.length; i++) {
     buttonNumber[i].addEventListener("click", (event)=>{
@@ -111,6 +114,9 @@ function handlerKeydown(event){
                 userNum2 = ""
                 }
             break;
+        case "Backspace":
+            backspace()
+            break;
     }
 }
 
@@ -120,10 +126,10 @@ function clearCalculator(){
     userNum2 = ""
     userNum1 = ""
     userOperator = ""
-    buttonDot.disabled = false
 }
 
 function runOperation(a,b){
+    let result = ""
     a = +a;
     b = +b;
     switch (userOperator) {
