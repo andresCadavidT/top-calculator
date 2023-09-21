@@ -12,9 +12,6 @@ const buttonDot = document.querySelector(".buttonDot")
 const buttonBackspace = document.querySelector(".buttonBackspace")
 
 document.addEventListener("keydown", (event)=>{handlerKeydown(event)})
-document.addEventListener("keydown", (event)=>{
-    console.log(event.key)
-})
 
 for (let i = 0; i < buttonNumber.length; i++) {
     buttonNumber[i].addEventListener("click", (event)=>{
