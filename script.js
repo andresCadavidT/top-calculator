@@ -129,7 +129,7 @@ function clearCalculator(){
 }
 
 function runOperation(a,b){
-    let result = ""
+    let result
     a = +a;
     b = +b;
     switch (userOperator) {
@@ -143,10 +143,11 @@ function runOperation(a,b){
             result = a * b
             break;
         case "/":
-            if(b == 0){result = "Error"; break;}
+            if(b == 0){return result = "Error"}
             result = a / b
             break;
     }
+    
     result = parseFloat(result.toFixed(9))
     return result
 }
