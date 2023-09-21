@@ -8,12 +8,13 @@ const buttonNumber = document.querySelectorAll(".buttonNumber")
 const buttonClear = document.querySelector(".buttonClear")
 const buttonOperator = document.querySelectorAll(".buttonOperator")
 const buttonEqual = document.querySelector(".buttonEqual")
+const buttonDot = document.querySelector(".buttonDot")
 
 for (let i = 0; i < buttonNumber.length; i++) {
     buttonNumber[i].addEventListener("click", (event)=>{
-        if(display.innerText == 0 
-            || display.innerText == "Are you kidding?")
-            {clearDisplay()}
+        temp = display.innerText
+        if(temp == 0 && !temp.includes(".")){clearDisplay()}
+
         
         addOnDisplay(event.target.innerText)
     })
@@ -46,6 +47,8 @@ for (let i = 0; i < buttonOperator.length; i++) {
     });
 }
 
+buttonDot.addEventListener("click", dot)
+
 buttonEqual.addEventListener("click", ()=>{
     if(display.innerText == "Error") {clearCalculator()}
     if(userNum1 != "" && display.innerText != "" ) {
@@ -67,6 +70,7 @@ function clearCalculator(){
     userNum2 = ""
     userNum1 = ""
     userOperator = ""
+    buttonDot.disabled = false
 }
 
 function runOperation(a,b){
@@ -103,4 +107,11 @@ function addOnDisplay(toDisplay){
 
 function addOnAuxDisplay(toDisplay){
     auxDisplay.innerText += toDisplay
+}
+
+function dot(){
+    tempDisplayInnerText = display.innerText
+    if(tempDisplayInnerText.includes(".") == false && display.innerText != ""){
+        addOnDisplay(".")
+    }
 }
