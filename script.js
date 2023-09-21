@@ -11,12 +11,20 @@ const buttonEqual = document.querySelector(".buttonEqual")
 const buttonDot = document.querySelector(".buttonDot")
 const buttonBackspace = document.querySelector(".buttonBackspace")
 
+// para usar en el proximo commit, surgio un Hotfix
+// Crea la posibilidad de agegar dos eventos en el mismo addEventListener, la propiedad se llama addEventListener"s"2, notese la S! 
+// agrego un 2 al final para evitar confusiones
+// Node.prototype.addEventListeners2 = function(eventNames, eventFunction){
+//     let eventNamesArray = eventNames.split(' ');
+//     for (let i = 0; i < eventNamesArray.length; i++) {
+//         this.addEventListener(eventNamesArray[i], eventFunction);
+//     }
+// }
+
 for (let i = 0; i < buttonNumber.length; i++) {
     buttonNumber[i].addEventListener("click", (event)=>{
         temp = display.innerText
         if(temp == 0 && !temp.includes(".")){clearDisplay()}
-
-        
         addOnDisplay(event.target.innerText)
     })
 }
@@ -37,13 +45,13 @@ for (let i = 0; i < buttonOperator.length; i++) {
             clearDisplay()
         }
         if(userNum1 != "" && display.innerText != "") {
-            userOperator = event.target.innerText
             userNum2 = display.innerText
-            auxDisplay.innerText += userNum2 + "="
+            auxDisplay.innerText = runOperation(userNum1, userNum2) 
+            addOnAuxDisplay(userOperator)
             clearDisplay()
-            display.innerText = runOperation(userNum1,userNum2)
-            userNum1 = ""
+            userNum1 = runOperation(userNum1, userNum2)
             userNum2 = ""
+            userOperator = event.target.innerText
         }
     });
 }
@@ -94,7 +102,8 @@ function runOperation(a,b){
             result = a / b
             break;
     }
-    return parseFloat(result.toFixed(9))
+    result = parseFloat(result.toFixed(9))
+    return result
 }
 
 function clearDisplay(){
