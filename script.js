@@ -9,6 +9,7 @@ const buttonClear = document.querySelector(".buttonClear")
 const buttonOperator = document.querySelectorAll(".buttonOperator")
 const buttonEqual = document.querySelector(".buttonEqual")
 const buttonDot = document.querySelector(".buttonDot")
+const buttonBackspace = document.querySelector(".buttonBackspace")
 
 for (let i = 0; i < buttonNumber.length; i++) {
     buttonNumber[i].addEventListener("click", (event)=>{
@@ -46,6 +47,8 @@ for (let i = 0; i < buttonOperator.length; i++) {
         }
     });
 }
+
+buttonBackspace.addEventListener("click", backspace)
 
 buttonDot.addEventListener("click", dot)
 
@@ -114,4 +117,8 @@ function dot(){
     if(tempDisplayInnerText.includes(".") == false && display.innerText != ""){
         addOnDisplay(".")
     }
+}
+
+function backspace(){
+    display.innerText = display.innerText.slice(0,-1)
 }
