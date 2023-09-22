@@ -1,5 +1,174 @@
-.display, .aux-display{
-    border: 2px solid black;
+@font-face {
+    font-family: 'CalculatorFont';
+    src: url('assets/TechnologyW.woff') format('woff');
+}
+
+body{
+    display: block;
+    background-color: #bac6cc;
+    margin: 0;
+    padding: 0;
+}
+
+.box-calculator{
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    width: 260px;
+    border-radius: 6px;
+    margin-top: 23px;
+}
+
+.box-head{
+    background-color: #4d9bbe;
+    border-radius: 5px;
+    padding: 5px;
+    width: 240px;
     margin: 5px;
-    min-height: 20px;
+}
+
+.box-rocco-energy{
+    display: flex;
+    justify-content: space-between;
+}
+
+.rocco{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 18px;
+    font-weight: 900;
+    margin-left: 12px;
+    margin-top: 8px;
+    color: white;
+}
+
+.box-display{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    border: 5px solid rgb(66, 66, 66);
+    border-radius: 8px;
+    width: 200px;
+    min-height: 60px;
+    max-height: 400px;
+    background-color: #b8d3e0;
+    margin: 5px;
+    padding: 10px;
+    font-size: 30px;
+    font-family: 'CalculatorFont',  sans-serif;
+}
+
+.display{
+    word-wrap: break-word;
+    width: 200px;
+    min-height: 30px;
+    max-height: 200px;
+    margin: 5px;
+    text-align: right;
+    font-size: 42px;
+}
+
+.aux-display{
+    word-wrap: break-word;
+    width: 200px;
+    min-height: 30px;
+    max-height: 200px;
+    margin: 5px;
+    font-size: 16px;
+}
+
+.sl-100tc{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    margin-left: 12px;
+    margin-top: 8px;
+    color: white;
+}
+
+.box-energy-cell{
+    display: flex;
+    border: 1px grey solid;
+    border-radius: 5px;
+    overflow: hidden;
+    height: 30px;
+    margin-bottom: 2px;
+}
+
+.energy-cell{
+    background-color: black;
+    width: 20px;
+    height: 30px;
+    border: 1px solid rgb(14, 13, 13);
+}
+
+.box-two-way{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 85px;
+    margin-right: 12px;
+    margin-top: 8px;
+}
+
+.two-way{
+    font-size: 6px;
+    color: white;
+}
+
+.box-bottom{
+    display:flex;
+    width: 240px;
+    max-height: 400px;
+    margin-bottom: 10px;
+}
+
+.box-numbers{
+    display:block;
+    min-width: 120px;
+    min-height: 160px;
+}
+
+.buttons{
+    margin: 5px;
+    height: 30px;
+    width: 35px;
+    border-radius: 5px;
+    color: white;
+    background-color: #4d9bbe;
+    border: 1.5px black solid;
+}
+
+.buttonsOperators{
+    margin: 5px;
+    height: 30px;
+    width: 35px;
+    border-radius: 5px;
+    color: #4d9bbe;
+    background-color: white;
+    font-size: 22px;
+    border: 1.5px black solid;
+}
+
+.buttonsAcBack{
+    margin: 5px;
+    height: 70px;
+    width: 35px;
+    font-size: 14px;
+    border-radius: 5px;
+    color: white;
+    background-color: #24617e;
+    border: 1.5px black solid;
+}
+
+.footer{
+    margin-top: 20px;
+    text-align: center;
+    font-size: 12px;
+}
+
+.footer > a{
+    text-decoration: none;
 }
