@@ -106,13 +106,14 @@ function handlerOperators(event){
     }
     if(userNum1 != "" && display.innerText != "") {
         userNum2 = display.innerText
-        auxDisplay.innerText = runOperation(userNum1, userNum2) 
-        addOnAuxDisplay(userOperator)
-        clearDisplay()
-        userNum1 = runOperation(userNum1, userNum2)
-        userNum2 = ""
+        let tempResult = runOperation(userNum1, userNum2)
+        auxDisplay.innerText = tempResult
         if (event.type == "keydown"){userOperator = event.key};
         if (event.type == "click"){userOperator = event.target.innerText};
+        addOnAuxDisplay(userOperator)
+        clearDisplay()
+        userNum1 = tempResult
+        userNum2 = ""
     }
 }
 
