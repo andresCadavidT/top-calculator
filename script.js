@@ -46,14 +46,12 @@ function handlerClearCalculator(){
     userOperator = ""
 }
 
-
 document.addEventListener("keydown", (event)=>{
     event.preventDefault()
     handlerKeydown(event)
 })
 
 function handlerKeydown(event){
-    console.log(event)
     switch (event.key) {
         case ".":
             handlerDot()
@@ -68,9 +66,7 @@ function handlerKeydown(event){
             handlerClearCalculator()
             break;
         case "0": case "1": case "2": case "3": case "4": case "5": case "6": case "7": case "8": case "9":
-            temp = display.innerText
-            if(temp == 0 && !temp.includes(".")){clearDisplay()}
-            addOnDisplay(event.key)
+            handlerNumbers(event)
             break;
         case "+": case "-": case "*": case "/":
             if(display.innerText == "Error"){handlerClearCalculator()}
@@ -99,19 +95,16 @@ function handlerKeydown(event){
     }
 }
 
-// Hago un Commit antes de implementar esta idea
-// function testHandlerNumbers(event){
-//     temp = display.innerText
-//     if(temp == 0 && !temp.includes(".")){clearDisplay()}
-//     if (event.type == "keydown"){addOnDisplay(event.key)}
-//     if (event.type == "click"){addOnDisplay(event.target.innerText)}
-// }
+function handlerNumbers(event){
+    temp = display.innerText
+    if(temp == 0 && !temp.includes(".")){clearDisplay()}
+    if (event.type == "keydown"){addOnDisplay(event.key)}
+    if (event.type == "click"){addOnDisplay(event.target.innerText)}
+}
 
 for (let i = 0; i < buttonNumber.length; i++) {
     buttonNumber[i].addEventListener("click", (event)=>{
-        temp = display.innerText
-        if(temp == 0 && !temp.includes(".")){clearDisplay()}
-        addOnDisplay(event.target.innerText)
+        handlerNumbers(event)
     })
 }
 
@@ -142,7 +135,6 @@ for (let i = 0; i < buttonOperator.length; i++) {
     });
 }
 
-
 function runOperation(a,b){
     let result
     a = +a;
@@ -170,6 +162,7 @@ function runOperation(a,b){
 function clearDisplay(){
     display.innerText = "";
 }
+
 function clearAuxDisplay(){
     auxDisplay.innerText = "";
 }
