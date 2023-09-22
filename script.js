@@ -12,11 +12,26 @@ const buttonBackspace = document.querySelector(".buttonBackspace")
 const buttonEqual = document.querySelector(".buttonEqual")
 const buttonClear = document.querySelector(".buttonClear")
 
+document.addEventListener("keydown", (event)=>{
+    event.preventDefault()
+    handlerKeydown(event)
+})
+for (let i = 0; i < buttonNumber.length; i++) {
+    buttonNumber[i].addEventListener("click", (event)=>{
+        handlerNumbers(event)
+    })
+}
+for (let i = 0; i < buttonOperator.length; i++) {
+    buttonOperator[i].addEventListener("click", (event) => {
+        handlerOperators(event)
+    });
+}
 
 buttonDot.addEventListener("click", handlerDot)
 buttonBackspace.addEventListener("click", handlerBackspace)
 buttonEqual.addEventListener("click", handlerEqualEnter)
 buttonClear.addEventListener("click", handlerClearCalculator)
+
 
 function handlerDot(){
     tempDisplayInnerText = display.innerText
@@ -45,12 +60,6 @@ function handlerClearCalculator(){
     userNum1 = ""
     userOperator = ""
 }
-
-document.addEventListener("keydown", (event)=>{
-    event.preventDefault()
-    handlerKeydown(event)
-})
-
 function handlerKeydown(event){
     switch (event.key) {
         case ".":
@@ -69,70 +78,42 @@ function handlerKeydown(event){
             handlerNumbers(event)
             break;
         case "+": case "-": case "*": case "/":
-            if(display.innerText == "Error"){handlerClearCalculator()}
-            if(display.innerText == ""){
-                userOperator = event.key
-                auxDisplay.innerText = auxDisplay.innerText.slice(0,-1)
-                addOnAuxDisplay(userOperator)
-            }
-            if(display.innerText != "" && userNum1 == "") {
-                userOperator = event.key
-                userNum1 = display.innerText
-                clearAuxDisplay()
-                auxDisplay.innerText = display.innerText + userOperator
-                clearDisplay()
-            }
-            if(userNum1 != "" && display.innerText != "") {
-                userNum2 = display.innerText
-                auxDisplay.innerText = runOperation(userNum1, userNum2) 
-                addOnAuxDisplay(userOperator)
-                clearDisplay()
-                userNum1 = runOperation(userNum1, userNum2)
-                userNum2 = ""
-                userOperator = event.key
-            }
+            handlerOperators(event)
             break;
     }
 }
-
 function handlerNumbers(event){
     temp = display.innerText
     if(temp == 0 && !temp.includes(".")){clearDisplay()}
     if (event.type == "keydown"){addOnDisplay(event.key)}
     if (event.type == "click"){addOnDisplay(event.target.innerText)}
 }
-
-for (let i = 0; i < buttonNumber.length; i++) {
-    buttonNumber[i].addEventListener("click", (event)=>{
-        handlerNumbers(event)
-    })
-}
-
-for (let i = 0; i < buttonOperator.length; i++) {
-    buttonOperator[i].addEventListener("click", (event) => {
-        if(display.innerText == "Error"){handlerClearCalculator()}
-        if(display.innerText == ""){
-            userOperator = event.target.innerText
-            auxDisplay.innerText = auxDisplay.innerText.slice(0,-1)
-            addOnAuxDisplay(userOperator)
-        }
-        if(display.innerText != "" && userNum1 == "") {
-            userOperator = event.target.innerText
-            userNum1 = display.innerText
-            clearAuxDisplay()
-            auxDisplay.innerText = display.innerText + userOperator
-            clearDisplay()
-        }
-        if(userNum1 != "" && display.innerText != "") {
-            userNum2 = display.innerText
-            auxDisplay.innerText = runOperation(userNum1, userNum2) 
-            addOnAuxDisplay(userOperator)
-            clearDisplay()
-            userNum1 = runOperation(userNum1, userNum2)
-            userNum2 = ""
-            userOperator = event.target.innerText
-        }
-    });
+function handlerOperators(event){
+    if(display.innerText == "Error"){handlerClearCalculator()}
+    if(display.innerText == ""){
+        if (event.type == "keydown"){userOperator = event.key};
+        if (event.type == "click"){userOperator = event.target.innerText};
+        auxDisplay.innerText = auxDisplay.innerText.slice(0,-1)
+        addOnAuxDisplay(userOperator)
+    }
+    if(display.innerText != "" && userNum1 == "") {
+        if (event.type == "keydown"){userOperator = event.key};
+        if (event.type == "click"){userOperator = event.target.innerText};
+        userNum1 = display.innerText
+        clearAuxDisplay()
+        auxDisplay.innerText = display.innerText + userOperator
+        clearDisplay()
+    }
+    if(userNum1 != "" && display.innerText != "") {
+        userNum2 = display.innerText
+        auxDisplay.innerText = runOperation(userNum1, userNum2) 
+        addOnAuxDisplay(userOperator)
+        clearDisplay()
+        userNum1 = runOperation(userNum1, userNum2)
+        userNum2 = ""
+        if (event.type == "keydown"){userOperator = event.key};
+        if (event.type == "click"){userOperator = event.target.innerText};
+    }
 }
 
 function runOperation(a,b){
