@@ -34,8 +34,9 @@ buttonClear.addEventListener("click", handlerClearCalculator)
 
 
 function handlerDot(){
-    tempDisplayInnerText = display.innerText
-    if(tempDisplayInnerText.includes(".") == false && display.innerText != ""){
+    let temp = display.innerText
+    if(temp == "Error"){clearDisplay()}
+    if(temp.includes(".") == false && display.innerText != ""){
         addOnDisplay(".")
     }
 }
@@ -83,10 +84,11 @@ function handlerKeydown(event){
     }
 }
 function handlerNumbers(event){
-    temp = display.innerText
+    let temp = display.innerText
+    if(temp == "Error"){clearDisplay()}
     if(temp == 0 && !temp.includes(".")){clearDisplay()}
-    if (event.type == "keydown"){addOnDisplay(event.key)}
-    if (event.type == "click"){addOnDisplay(event.target.innerText)}
+    if(event.type == "keydown"){addOnDisplay(event.key)}
+    if(event.type == "click"){addOnDisplay(event.target.innerText)}
 }
 function handlerOperators(event){
     if(display.innerText == "Error"){handlerClearCalculator()}
