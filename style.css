@@ -68,6 +68,7 @@ body{
     margin: 5px;
     text-align: right;
     font-size: 42px;
+    overflow: auto;
 }
 
 .aux-display{
@@ -77,6 +78,7 @@ body{
     max-height: 200px;
     margin: 5px;
     font-size: 16px;
+    overflow: auto;
 }
 
 .sl-100tc{
